@@ -15,14 +15,6 @@ var fight = function(enemyName) {
         //ask player if they'd like to fight or run
         var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter FIGHT or "SKIP" to choose.');
 
-        //if player picks fight
-        if (promptFight === "fight" || promptFight === "FIGHT") {
-            enemyHealth = enemyHealth - playerAttack;
-            console.log(
-                playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has '+ enemyHealth + ' health remainnig.'
-            )
-        }
-
         //if player picks "skip" confirm and then stop the loop
         if (promptFight === "skip" || promptFight === "SKIP") {
             //confirm player wants to skip
@@ -50,10 +42,11 @@ var fight = function(enemyName) {
 
             //award player money for winning
             playerMoney = playerMoney + 20;
+
             //leave while() loop since enemy is dead
             break;
         } else { 
-            window.alert(enemyName) + ' still has ' + enemyHealth + ' health left.';
+            window.alert(enemyName + ' still has ' + enemyHealth + ' health left.');
         }
 
         //remove player's health by subtracting the amout set in the enemyAttack variable
@@ -69,7 +62,28 @@ var fight = function(enemyName) {
         } else {
             window.alert(playerName + ' still has ' + playerHealth + ' health left.');
         }
+    } // end of while loop
+}; // end of fight function
+
+for (var i = 0; i < enemyNames.length; i++) {
+    //if player is still alive, keep fighting
+    if (playerHealth > 0) {
+        //let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to is
+        window.alert('Welcome to Robot Gladiators! Round ' + (i + 1));
+
+        //pick new enemy to fight based on the index of the enemyNAmes array
+        var pickedEnemyName = enemyNames[i];
+
+        //reset enenmyhealth before starting a new fight
+        enemyHealth = 50;
+        
+        //pass the pickedEnemyName variable into the fight funxtion
+        fight(pickedEnemyName);
     }
-};
-fight();
+    else {
+        window.alert('You have lost your robot in battle! Game over!');
+        break; 
+    }
+}
+
 
