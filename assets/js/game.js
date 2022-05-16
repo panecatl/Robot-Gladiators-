@@ -177,6 +177,7 @@ upgradeAttack: function() {
         window.alert("You don't have enough money!");
     }
 }
+};
 
 // You can also log multiple values at once like this
 console.log(playerInfo.name, playerInfo.attack, playerInfo.health);
