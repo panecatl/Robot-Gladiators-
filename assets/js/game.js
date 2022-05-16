@@ -1,8 +1,11 @@
+var randomNumber = function(min,max) {
+    var value = Math.floor(Math.random() * (max - min + 1) + min);
 
+    return value;
+}
 
 var fight = function(enemy) {
-
-    while (playerInfo.health > 0 && enemy.health > 0) {
+        while (playerInfo.health > 0 && enemy.health > 0) {
         //ask player if they'd like to fight or run
         var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter FIGHT or "SKIP" to choose.');
 
@@ -23,6 +26,7 @@ var fight = function(enemy) {
 
         //remove enemy's health by subtracting the amount set in the playerInfo.attack variable 
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
+
         enemy.health = Math.max(0, enemy.health - damage);
         console.log(
             playerInfo.name + ' attacked ' + enemy.name + '. ' + enemy.name + ' now has ' + enemy.health + ' health reamining.'
@@ -43,7 +47,9 @@ var fight = function(enemy) {
 
         //remove player's health by subtracting the amout set in the enemy.attack variable
         var damage = randomNumber(enemy.attack - 3, enemy.attack);
+
         playerInfo.health = Math.max(0, playerInfo.health - damage); 
+
         console.log(
             enemy.name + ' attacked ' + playerInfo.name + '. ' + playerInfo.name + ' now has ' + playerInfo.health + ' health reamining.'
         );
@@ -144,8 +150,8 @@ var shop = function() {
         //call shop() again to force player to pick a valid option
         shop();
         break;
-    }
-};
+        }
+    };
 
 var playerInfo = {
     name: window.prompt("What is your robot's name?"),
@@ -161,22 +167,23 @@ var playerInfo = {
         if (this.money >= 7) {
         this.health += 20;
         this.money -= 7;
-    }
+        }
     else {
         window.alert("You don't have enough money!");
-    }
-},
+        }
+    },
+
 
 upgradeAttack: function() {
     if (this.money >= 7) {
         window.alert("Upgrading player's attack by 6 for 7 dollars.");
         this.attack += 6;
         this.money -= 7;
-    }
+        }
     else {
         window.alert("You don't have enough money!");
-    }
-}
+        }
+    }   
 };
 
 // You can also log multiple values at once like this
@@ -197,4 +204,5 @@ var enemyInfo = [
     }
 ];
 
-startGame(); 
+startGame()
+
