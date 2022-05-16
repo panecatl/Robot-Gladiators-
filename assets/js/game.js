@@ -204,5 +204,12 @@ var enemyInfo = [
     }
 ];
 
+console.log(enemyInfo);
+console.log(enemyInfo[0]);
+console.log(enemyInfo[0].name);
+console.log(enemyInfo[0]['attack']);
+
+
+
 startGame()
 
