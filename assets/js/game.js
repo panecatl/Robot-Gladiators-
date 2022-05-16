@@ -34,18 +34,28 @@ var fightOrSkip = function() {
 }
 
 var fight = function(enemy) {
+        // to keep track who gpes first (human or enemy)
+        var isPlayerTurn = true;
+
+        //to randomize who goes first 
+        if (Math.random() > 0.5) {
+            isPlayerTurn = false;
+        }
+
         while (playerInfo.health > 0 && enemy.health > 0) {
+        if(isPlayerTurn) {
+            //ask player if they'd like to fight or skip using fightOrSKip function
+            if (fightOrSkip()) {
+                // if true, leave fight by breaking loop
+                break;
+            }
         
-        fightOrSkip;
-        break; 
 
         //remove enemy's health by subtracting the amount set in the playerInfo.attack variable 
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
         enemy.health = Math.max(0, enemy.health - damage);
-        console.log(
-            playerInfo.name + ' attacked ' + enemy.name + '. ' + enemy.name + ' now has ' + enemy.health + ' health reamining.'
-        );
+        console.log(playerInfo.name + ' attacked ' + enemy.name + '. ' + enemy.name + ' now has ' + enemy.health + ' health reamining.');
 
         //check enemy's health
         if (enemy.health <= 0) {
@@ -59,10 +69,10 @@ var fight = function(enemy) {
         } else { 
             window.alert(enemy.name + ' still has ' + enemy.health + ' health left.');
         }
-
-        //remove player's health by subtracting the amout set in the enemy.attack variable
-        var damage = randomNumber(enemy.attack - 3, enemy.attack);
-
+            //player gets attacked first
+        } else { 
+            var damage = randomNumber(enemy.attack - 3, enemy.attack);
+        
         playerInfo.health = Math.max(0, playerInfo.health - damage); 
 
         console.log(
@@ -75,7 +85,10 @@ var fight = function(enemy) {
             break;
         } else {
             window.alert(playerInfo.name + ' still has ' + playerInfo.health + ' health left.');
+            }
         }
+        //switch turn prder for next round
+        isPlayerTurn = !isPlayerTurn;
     } // end of while loop
 }; // end of fight function
 
